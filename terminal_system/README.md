@@ -1,2 +1,2 @@
-# Desafio-2
-Repositório do Desafio 2 do PAME 
+# Dinamica Técnica
+Me ler é perda de tempo 
