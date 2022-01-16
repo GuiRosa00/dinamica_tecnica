@@ -6,14 +6,14 @@ clientes = {}
 consultores = {}
 
 #Bloco de funções do Menu principal
-def criar_consultor():
+def criar_consultor(): #não adiciona no dic e nem cria consultor
     username = input("Username\n")
     password = input("Password\n")
     
     print("Consultor adicionado ao sistema!")
     return None
 
-def criar_cliente():
+def criar_cliente(): #não adiciona no dic e nem cria cliente
     username = input("Username\n")
     password = input("Password\n")
     
@@ -31,8 +31,9 @@ def criar_Contrato():
     else:
         cliente = clientes.keys(input('Id do cliente:\n'))
         consultor = consultores.keys(input('Id do consultor:\n'))
-        
-    contrato = Contrato(title,end_period,description=description,associates=f'{cliente}/{consultor}')
+    
+    ###erro de importação!!
+    contrato = Contrato(title,end_period,description=description,associates=f'{cliente}/{consultor}') ### como está falado no classes.py, associates deveria ser uma lista
     contratos[f'{contrato.id}']=contrato
-    print("Consultor adicionado ao sistema!")
+    print("Consultor adicionado ao sistema!") ### print errado
     return None
