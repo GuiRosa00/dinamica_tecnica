@@ -81,7 +81,7 @@ class User:
 
 class Consultor(User):
     def __init__(self,username,password):
-        super().__init__(username,password)
+        super.__init__(username,password)
         self.status = 'Consultant'
         self.id = f'C{id_generator.generate()}'
         self.projects = []
@@ -89,7 +89,7 @@ class Consultor(User):
 
 class Cliente:
     def __init__(self,username,password):
-        super().__init__(username,password) ### Existe um super.__init__, mas não tem hierarquia definida
+        super.__init__(username,password) ### Existe um super.__init__, mas não tem hierarquia definida
         self.status = 'Client'
         ### Percebe-se que tanto o consultor como o Cliente e o contrato possuem um 'C...', 
         # isso deveria ser resolvido por questões estruturais de confusão, mas seria algo mais supérfulo
