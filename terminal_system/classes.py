@@ -18,32 +18,29 @@ class Contrato:
 
     def __init__(self, title, end_period, description = '',associates=''):
         """Essa classe é responsável por inicializar uma instância 
-        de um Contrato, dado um certo título, data de termino, descrição, consultor e cliente."""
+        de um Contrato, dado um certo título (Nome do Projeto), data de termino, descrição, consultor e cliente."""
         ### INICIALIZA A CLASSE DOS CONTRATOS DO SISTEMA
-        self.title = int(title) ### title está como int no init, ele deveria ser uma str
-        self.associates = associates # está setado como str, mas ele deve se tornar uma lista!
-        self.description = descript ## erro de nome
-        self.id = f'C{id_generator.generate()}'
+        self.title = int(title) 
+        self.associates = associates 
+        self.description = descript
+        self.id = f'C{id_generator.generate()}' #Este C indica que é um Contrato
         self.created_dt = f'{datetime.datetime.now()}'
         self.end_period = end_period
         self.concluded = 0
         return None
 
-    @staticmethod ### decorator inválido, deveria ser removido ou substituído por @classmethod
-    def __review__(self,): ### esse método mágico está incorreto, deveria ser __str__ ou __repr__
+    @staticmethod
+    def __review__(self,):
         print("Status:",'\n')
-        print("Title:",str(title)) ### falta self no title, e não é necessário colocar str()
+        print("Title:",str(title))
         for i in self.associates: 
-            ### no caso, ele estaria printando cada letra da str,
-            #  eles devem perceber esse erro, e por isso transformar em lista
+            ###Ao efetuar essa operação, o código não mostra os associados do contrato, mas não sei o motivo.
             print("Associates:",i)
         print('\n',self.description)
-        print('Concluded':self.concluded)## está com : fora do print e sem ','
+        print('Concluded':self.concluded)
         return None
     
     def conclude_contract(self): 
-        ### método que poderia ser jogado para fora da classe 
-        #(não seria essencial para avaliação), já que é de lógica extremamente simples
         if self.concluded:
             print("Contrato já concluído")
             return None
@@ -51,7 +48,7 @@ class Contrato:
         print("Contrato Concluído!")
         return None
     
-    def terminate_contract(self): ### Isso não deveria ser um método.
+    def terminate_contract(self):
         inp = input("Você realmente pretende terminar este contrato?",
         '\n (s)Sim',
         '\n (n)Não')
@@ -62,13 +59,13 @@ class Contrato:
 
 class User:
 
-    def init(self,username,password): ## sem o __
+    def init(self,username,password):
         '''Essa classe serve como um modelo base para a interação tanto para os Consultores quanto para os Clientes que
         utilizaram o terminal.'''
         self.username = username
         self.password = password
         self.status = 'Blank_User'
-        self.id = f'U{id_generator.generate()}'
+        self.id = f'U{id_generator.generate()}' #Este U indica que é um Usuário não definido
         return None
     
     def view(self,user_try,pass_try):
@@ -83,16 +80,14 @@ class Consultor(User):
     def __init__(self,username,password):
         super.__init__(username,password)
         self.status = 'Consultant'
-        self.id = f'C{id_generator.generate()}'
+        self.id = f'C{id_generator.generate()}' #Este C indica que é um Consultor
         self.projects = []
         return None
 
 class Cliente:
     def __init__(self,username,password):
-        super.__init__(username,password) ### Existe um super.__init__, mas não tem hierarquia definida
+        super().__init__(username,password)
         self.status = 'Client'
-        ### Percebe-se que tanto o consultor como o Cliente e o contrato possuem um 'C...', 
-        # isso deveria ser resolvido por questões estruturais de confusão, mas seria algo mais supérfulo
-        self.id = f'C{id_generator.generate()}'
+        self.id = f'C{id_generator.generate()}' #Este C indica que é um Cliente
         self.contracts = []
         return None

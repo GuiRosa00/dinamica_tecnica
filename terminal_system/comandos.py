@@ -6,20 +6,20 @@ clientes = {}
 consultores = {}
 
 #Bloco de funções do Menu principal
-def post_consultor(): #não adiciona no dic e nem cria consultor
+def post_consultor():
     username = input("Username\n")
     password = input("Password\n")
     print("Consultor adicionado ao sistema!")
     return None
 
-def post_cliente(): #não adiciona no dic e nem cria cliente
+def put_cliente():
     username = input("Username\n")
     password = input("Password\n")
     
     print("Consultor adicionado ao sistema!")
     return None
           
-def post_contrato():
+def get_contrato():
     title = input("Title\n")
     description = input("Description\n")
     end_period = input("End Period\n")
@@ -31,13 +31,12 @@ def post_contrato():
         cliente = clientes.keys(input('Id do cliente:\n'))
         consultor = consultores.keys(input('Id do consultor:\n'))
     
-    ###erro de importação!!
-    contrato = Contrato(title,end_period,description=description,associates=f'{cliente}/{consultor}') ### como está falado no classes.py, associates deveria ser uma lista
+    contrato = Contrato(title,end_period,description=description,associates=f'{cliente}/{consultor}')
     contratos[f'{contrato.id}']=contrato
-    print("Consultor adicionado ao sistema!") ### print errado
+    print("Consultor adicionado ao sistema!")
     return None
 
-def conclude_contrato():
+def put_contrato():
     try:contrato = contratos[input("Id do Contrato:\n")]
     except KeyError:
         print("Não existe contrato com esse id")
@@ -53,9 +52,4 @@ def get_consultor():
     print("Consultor Log")
     id = int(input("Id do consultor"))
     consultores[id].view()
-    print("----------------------------")
-
-def delete_consultor():
-    username = input("Username\n")
-    password = input("Password\n")
     print("----------------------------")
